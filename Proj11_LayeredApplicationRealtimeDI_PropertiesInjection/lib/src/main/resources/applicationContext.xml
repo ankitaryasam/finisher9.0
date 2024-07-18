@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="ds" >
+     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+     <property name="url" value="jdbc:mysql://localhost:3306/finisher_batch" />
+     <property name="username" value="root" />
+     <property name="password" value="Ankit@$7668" />
+     
+     
+     
+     
+     <property name="ConnectionProperties">
+        
+        <props>
+         <prop  key="user">root</prop>
+         <prop key="password">Ankit@87668</prop>
+         </props>
+      
+      </property>
+    </bean>
+
+   
+   <bean class="com.app.student.dao.StudentDaoImpl" id="studentDao" >
+    <constructor-arg name="dataSource" ref="ds"></constructor-arg>
+    </bean>
+    
+    <bean class="com.app.student.service.StudentServiceImpl" id="studentService" >
+     <constructor-arg name="studentDao" ref="studentDao"></constructor-arg>
+     </bean>
+     
+     
+     
+     <bean class="com.app.student.controller.StudentMainController" id="mainController">
+      <constructor-arg name="studentService" ref="studentService"></constructor-arg>
+      </bean>
+     
+     
+     
+     
+     
+     
+     
+     
+
+</beans>

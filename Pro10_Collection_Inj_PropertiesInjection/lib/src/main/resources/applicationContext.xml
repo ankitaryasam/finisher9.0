@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ 
+ 
+ 
+    
+    <bean class="com.app.beans.Employee" id="emp">
+      <property name="employeeDesignation">
+      
+         <props>
+           <prop key="Rahul">SDE-II</prop>
+           <prop key="Aman">SDE-I Intern</prop>
+           <prop key="Priya">Frontend Dev</prop>
+           <prop key="Rohan">Backend Dev</prop>
+          </props>
+      
+       </property>
+      </bean>
+
+
+
+
+</beans>

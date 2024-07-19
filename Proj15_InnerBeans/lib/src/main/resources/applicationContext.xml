@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-merge="true" xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       
+      
+          
+          <bean class="com.app.beans.User"  id="u1" >
+            <constructor-arg name="phone">
+               <bean class="com.app.beans.Phone" >
+                 <property name="phoneNo" value="9876543210"  />
+                </bean>
+            </constructor-arg>
+           </bean>
+           
+           
+           
+    
+       
+        
+        </beans>

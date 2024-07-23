@@ -6,10 +6,17 @@
 
 
 
-    <bean class="com.app.beans.Delhivery"  id="logisticsService"  />
-    <bean class="com.app.beans.Bluedart" id="logisticsService2"  />
+    <bean class="com.app.beans.Delhivery"  id="logisticsService"  autowire-candidate="false"/>
+    <bean class="com.app.beans.Bluedart" id="lg2" />
+    <bean class="com.app.beans.EcomExpress" id="ecomExp"  primary="true"  autowire-candidate="false"/>
+    
+    
+  <!--   <bean class="com.app.beans.Amazon"  id="amazon"   autowire="byName">
+        -->
+        
+        
+        <bean class="com.app.beans.Amazon"  id="amazon"  autowire="no"  />
+        <bean class="com.app.beans.Amazon"  id="amazon2"  autowire="byType"  />
+        
    
-    <bean class="com.app.beans.Amazon"  id="amazon"   autowire="byName">
-       
-      </bean>
         </beans>

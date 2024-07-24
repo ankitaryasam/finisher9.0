@@ -10,6 +10,48 @@
             <constructor-arg value="java.util.Date"></constructor-arg>
          
          </bean>
+         
+         
+         
+         <bean class="java.lang.String"  id="s1">
+           <constructor-arg value="Hello"></constructor-arg>
+           </bean>
+           
+         <bean class="java.lang.String"  
+         id="s2"   
+         factory-bean="s1"  
+         factory-method="concat">
+         
+           <constructor-arg value=" World!"></constructor-arg>
+         
+         </bean>
+         
+         
+         <bean class="java.lang.String"  id="s3" >
+           <constructor-arg value="This is springboot course"></constructor-arg>
+          </bean>
+          
+          <bean class="java.lang.String"  
+                id="s4"
+                factory-bean="s3"
+                factory-method="substring"
+                >
+            
+              <constructor-arg value="8"></constructor-arg>
+              <constructor-arg value="18"></constructor-arg>     
+                
+           </bean>  
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
 
    
         </beans>

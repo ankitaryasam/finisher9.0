@@ -10,13 +10,22 @@
         ">
 
   
-   <bean class="com.app.beans.Delhivery" id="delhivery" autowire-candidate="false">
+   <bean class="com.app.beans.Delhivery" id="delhivery" autowire-candidate="true">
      
    </bean>
    
    <bean class="com.app.beans.Bluedart" id="bluedart" >
      
     </bean>
+    
+     <bean class="com.app.beans.EcomExpress" id="ecomExp">
+    
+     </bean>
+     
+     <bean class="com.app.beans.Shiprocket" id="shiprocket">
+    
+     </bean>
+     
    
    <bean class="com.app.beans.Amazon" id="amazon">
     

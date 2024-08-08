@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+ default-init-method="myinit"
+ default-destroy-method="mydestroy"
+
+ xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+
+
+   <bean class="java.util.Date" id="d1" p:year="101" p:month="11" p:date="15"  />
+   <bean class="java.util.Date" id="d2" p:year="124" p:month="0" p:date="15"  />
+   <bean class="java.util.Date" id="d3" p:year="123" p:month="0" p:date="15"  />
+
+
+   <bean class="com.app.beans.User" id="user"
+    p:name="Amit" p:regDate-ref="d2"    
+  />
+   
+   
+    <bean class="com.app.beans.Employee" id="emp" 
+    p:name="Rajesh Ranjan" p:joiningDate-ref="d3" 
+ 
+    />
+    <bean class="com.app.beans.Student" id="student" 
+    p:name="Ankit" p:dob-ref="d1" 
+   
+    
+    />
+    
+   <bean class="com.app.beans.AccountHolder" id="acHolder" p:acHolderName="Amit Ranjan" />
+  <bean class="com.app.beans.CreditCard"  id="cc"  p:cardNo="1111 2222 333 4444" init-method="init" destroy-method="destroy"
+   />
+ 
+ 
+ <context:annotation-config ></context:annotation-config>
+   
+</beans>

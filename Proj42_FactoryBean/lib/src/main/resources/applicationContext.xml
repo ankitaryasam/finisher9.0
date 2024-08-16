@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    
+    <bean class="com.app.beans.AlarmNote" id="alarmNote" >
+    
+      <constructor-arg ref="dateFacBean"></constructor-arg>
+      
+    </bean>
+    
+    <bean class="com.app.factory.DateFactoryBean" id="dateFacBean" >
+    
+       <constructor-arg value="124"></constructor-arg>
+       <constructor-arg value="7"></constructor-arg>
+       <constructor-arg value="17"></constructor-arg>
+    
+    </bean>
+
+</beans>

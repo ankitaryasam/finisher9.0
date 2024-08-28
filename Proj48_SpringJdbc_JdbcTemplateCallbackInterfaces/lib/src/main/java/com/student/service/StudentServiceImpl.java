@@ -1,5 +1,8 @@
 package com.student.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,26 @@ public class StudentServiceImpl implements StudentService {
 		
 		return dto;
 		
+	}
+
+	@Override
+	public List<StudentDto> getStudentsListByCourse(String course1, String course2, String course3) throws Exception {
+		List<StudentEntity> studentEntityList = studentDao.getStudentListByCourse(course1, course2, course3);
+		List<StudentDto> dtoList = new ArrayList<StudentDto>();
+		for(StudentEntity entity : studentEntityList) {
+			StudentDto dto = new StudentDto();
+			dto.setId(entity.getId());
+			dto.setName(entity.getName());
+			dto.setEmail(entity.getEmail());
+			dto.setCourseName(entity.getCourse_name());
+			dto.setObtainedMarks(entity.getObtained_marks());
+			dto.setGrade(entity.getGrade());
+			
+			dtoList.add(dto);
+		}
+		
+		
+		return dtoList;
 	}
 
 }

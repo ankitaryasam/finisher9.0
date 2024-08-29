@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.student.dao.StudentDao;
@@ -14,6 +15,7 @@ import com.student.entity.StudentEntity;
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
+	@Qualifier("studentDao3")
 	private StudentDao studentDao;
 
 	@Override

@@ -24,8 +24,8 @@ public class JdbcTemplateCallbackInterfacesTest {
 			dto = controller.processGetStudentDetailsRequest(1004);
 			System.out.println(dto);
 			
-			System.out.println("-----MULTIPLE RECORDS:: ResultSetExtractor------");
-			List<StudentDto> studentList = controller.fetchStudentsList("c++", "spring", "javascript");
+			System.out.println("-----MULTIPLE RECORDS:: RowCallbackHandler------");
+			List<StudentDto> studentList = controller.fetchStudentsList("java", "spring", "javascript");
 			System.out.println(studentList);
 		}
 		catch(Exception e) {

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+  <!-- xa datasource configuration for mysql given by atomikos -->
+    <bean id="mysqlXaDs" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" >
+    <property name="XaDataSourceClassName" 
+    value="com.mysql.cj.jdbc.MysqlXADataSource"></property>
+    
+      <property name="UniqueResourceName" value="mysqlXa"></property>
+    
+      <property name="xaProperties">
+      
+        <props>
+        
+           <prop key="databaseName">finisher_batch</prop>
+           <prop key="url" >jdbc:mysql://localhost:3306/finisher_batch</prop>
+           <prop key="user">root</prop>
+           <prop key="password">Ankit@$7668</prop>
+           
+         </props>
+       
+        </property>
+        
+        <property name="poolSize" value="10"></property>
+      
+      
+      
+      
+      
+      </bean>
+    
+    
+    
+     <bean id="psqlXaDs" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" >
+    <property name="XaDataSourceClassName" 
+    value="org.postgresql.xa.PGXADataSource"></property>
+    
+      <property name="UniqueResourceName" value="psqlXa"></property>
+     
+      <property name="xaProperties">
+      
+        <props>
+        
+           <prop key="databaseName">postgres</prop>
+           <prop key="url" >jdbc:postgresql://localhost:5432/postgres</prop>
+           <prop key="user">postgres</prop>
+           <prop key="password">root</prop>
+           
+         </props>
+       
+        </property>
+        
+        <property name="poolSize" value="10"></property>
+      
+      
+      
+      
+      
+      </bean>
+    
+    
+    
+    
+    <bean class="org.springframework.jdbc.core.JdbcTemplate" id="mysqlJdbcTemplate">
+       <constructor-arg  ref="mysqlXaDs"></constructor-arg>
+     </bean>
+     
+      <bean class="org.springframework.jdbc.core.JdbcTemplate" id="psqlJdbcTemplate">
+       <constructor-arg  ref="psqlXaDs"></constructor-arg>
+     </bean>
+    
+    
+    
+    <context:component-scan base-package="com.app.bank.dao"></context:component-scan>
+    
+    
+    
+    
+
+</beans>

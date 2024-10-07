@@ -63,6 +63,37 @@ public class EmployeeController {
     }
     
     
+    public void deleteEmployee(int id) {
+    	String status = empService.deleteEmployeeById(id);
+    	System.out.println(status);
+    }
+    
+    
+    public void getAllEmployees() {
+    	List<EmployeeDto> dtoList = empService.getAllEmployees();
+    	System.out.println(dtoList);
+    }
+    
+    public void deleteAllGivenEntities(List<EmployeeDto> dtoList) {
+    	String status = empService.removeEmployeesByGivenEntities(dtoList);
+    	System.out.println(status);
+    }
+    
+    
+    
+    
+    
+    
+    public void getAllEmployeesByIds(List<Integer> ids) {
+    	List<EmployeeDto> dtoList = empService.getEmployeesByIds(ids);
+    	System.out.println(dtoList);
+    }
+    
+    
+    
+    
+    
+    
     
     
     

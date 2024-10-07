@@ -23,5 +23,24 @@ public interface EmployeeService {
 	public void deleteEmployeeById(Integer id);
 	
 	public Optional<EmployeeDto> getEmployeeById(Integer id);
+	
+	public String deleteEmployeeById(int id);
+	
+	public List<EmployeeDto> getAllEmployees();
+	
+	public String removeEmployeesByGivenEntities(List<EmployeeDto> empDtoList);
 
+	
+	public List<EmployeeDto> getEmployeesByIds(List<Integer> ids);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

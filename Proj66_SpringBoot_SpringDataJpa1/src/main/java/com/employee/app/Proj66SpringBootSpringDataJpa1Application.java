@@ -65,8 +65,28 @@ public class Proj66SpringBootSpringDataJpa1Application {
 	
     //using the optional findById...
     controller.checkEmployee(1007);
+    controller.deleteEmployee(1006);
     
+    controller.getAllEmployees();
+    
+    controller.deleteAllGivenEntities(
+    		 List.of(new EmployeeDto(1003),
+    				 new EmployeeDto(1004),
+    				 new EmployeeDto(1005))
+    		
+    		);
+    
+    controller.getAllEmployeesByIds(List.of(new Integer(1001), new Integer(1002)));
 	}
+	
+	
+
+	
+	
+	
+	
+	
+	
 	
 
 }

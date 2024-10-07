@@ -1,5 +1,6 @@
 package com.employee.app.service;
 
+import java.lang.foreign.Linker.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -93,4 +94,94 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return optionalDto;
 		
 	}
+
+	@Override
+	public String deleteEmployeeById(int id) {
+		 // get the employee or check
+		 
+		 Optional<EmployeeEntity> optionalEntity = empRepo.findById(id);
+		 String status = "";
+		 
+		 if(optionalEntity.isPresent()) {
+			 empRepo.delete(optionalEntity.get());
+			 status = "Employee deleted";
+		 }
+		 else {
+			 status = "Employee cannot deleted...as there is no employee of this given employee id";
+		 }
+		 
+		 return status;
+		
+	}
+
+	@Override
+	public List<EmployeeDto> getAllEmployees() {
+		Iterable<EmployeeEntity> itrEntities = empRepo.findAll();
+		
+		Iterable<EmployeeDto> itrDto = new ArrayList<EmployeeDto>();
+		
+		//convert the each entity into dto and then add all the dto to the array list
+		
+		
+		itrEntities.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			
+			((List<EmployeeDto>)itrDto).add(dto);
+		});
+		
+		return (List<EmployeeDto>)itrDto;
+	}
+
+	@Override
+	public String removeEmployeesByGivenEntities(List<EmployeeDto> empDtoList) {
+		
+		//convert dto to entity list
+		
+		//the entites that are going to be deleted
+		List<EmployeeEntity> entityList = new ArrayList();
+		
+		empDtoList.forEach(dto->{
+			EmployeeEntity entity = new EmployeeEntity();
+			BeanUtils.copyProperties(dto, entity);
+			entityList.add(entity);
+		});
+		
+		empRepo.deleteAll(entityList);
+		return "Entities deleted";
+	}
+
+	@Override
+	public List<EmployeeDto> getEmployeesByIds(List<Integer> ids) {
+		
+	 List<EmployeeEntity> listEntity =	(List<EmployeeEntity>)empRepo.findAllById(ids);
+	
+	 //convert the entity list to the dto list
+	 
+	 List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+	 
+	 listEntity.forEach(entity->{
+		 EmployeeDto dto = new EmployeeDto();
+		 BeanUtils.copyProperties(entity, dto);
+		 dtoList.add(dto);
+	 });
+	
+	 return dtoList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

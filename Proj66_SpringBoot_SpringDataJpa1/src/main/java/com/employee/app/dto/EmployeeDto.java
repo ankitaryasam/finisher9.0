@@ -10,6 +10,10 @@ public class EmployeeDto {
   
   public  EmployeeDto() {}
   
+  public EmployeeDto(Integer eid) {
+	  this.eid=eid;
+  }
+  
 public EmployeeDto(Integer eid, String name, String email, Float salary) {
 	this.eid = eid;
 	this.name = name;

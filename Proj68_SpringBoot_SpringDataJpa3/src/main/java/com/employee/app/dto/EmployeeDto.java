@@ -6,6 +6,9 @@ public class EmployeeDto {
   private String name;
   private String email;
   private Float salary;
+  private String city;
+  
+  
   
   
   public  EmployeeDto() {}
@@ -14,13 +17,22 @@ public class EmployeeDto {
 	  this.eid=eid;
   }
   
-public EmployeeDto(Integer eid, String name, String email, Float salary) {
+public EmployeeDto(Integer eid, String name, String email, Float salary, String city) {
 	this.eid = eid;
 	this.name = name;
 	this.email = email;
 	this.salary = salary;
+	this.city=city;
 }
   
+public String getCity() {
+	return city;
+}
+
+public void setCity(String city) {
+	this.city = city;
+}
+
 public Integer getEid() {
 	return eid;
 }
@@ -48,8 +60,11 @@ public void setSalary(Float salary) {
 
 @Override
 public String toString() {
-	return "EmployeeDto [eid=" + eid + ", name=" + name + ", email=" + email + ", salary=" + salary + "]";
+	return "EmployeeDto [eid=" + eid + ", name=" + name + ", email=" + email + ", salary=" + salary + ", city=" + city
+			+ "]";
 }
+
+
   
 
 

@@ -4,10 +4,13 @@ package com.employee.app.service;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.employee.app.dto.EmployeeDto;
 import com.employee.app.entity.EmployeeEntity;
 import com.employee.app.repo.EmployeeRepo;
+import com.employee.app.repo.EmployeeRepository;
 
 import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
@@ -26,7 +30,9 @@ import ch.qos.logback.core.joran.util.beans.BeanUtil;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
-	private EmployeeRepo empRepo;
+	@Qualifier("employeeRepository")
+	private EmployeeRepository empRepo;
+	
 	
 	
 	@Override
@@ -172,6 +178,201 @@ public class EmployeeServiceImpl implements EmployeeService {
 		});
 		
 		empRepo.deleteAllInBatch(listEntity);
+		
+	}
+
+
+	@Override
+	public List<EmployeeDto> fetchEmployeesBySomeData(EmployeeDto dto, 
+				String property, boolean ascendingOrder) {
+		//convert the dto to entity
+		
+		EmployeeEntity entity = new EmployeeEntity();
+		BeanUtils.copyProperties(dto, entity);
+		
+		//prepare the Example object
+		Example<EmployeeEntity> ex = Example.of(entity);
+		
+		//use repository
+		List<EmployeeEntity> entityList = empRepo.findAll(ex, ascendingOrder?Sort.by(Direction.ASC, property):Sort.by(Direction.DESC));
+	    List<EmployeeDto> empListDto = new ArrayList<EmployeeDto>();
+	    entityList.forEach(empEntity->{
+	    	EmployeeDto empDto = new EmployeeDto();
+	    	BeanUtils.copyProperties(empEntity, empDto);
+	    	empListDto.add(empDto);
+	    });
+		
+	    return empListDto;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesBySalary(Float salary) {
+		List<EmployeeEntity> entityList = empRepo.findBySalary(salary);
+	
+	//convert entity list to dto list
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesByName(String name) {
+		List<EmployeeEntity> listEntity = empRepo.findByName(name);
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		listEntity.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesBySalaryLessThanOrEqual(Float salary) {
+		List<EmployeeEntity> entityList =  empRepo.findBySalaryLessThanEqual(salary);
+	
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesBySalaryGreaterThanOrEqual(Float salary) {
+		List<EmployeeEntity> entityList = empRepo.findBySalaryGreaterThanEqual(salary);
+	
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesThatContainsInName(String chars) {
+		List<EmployeeEntity> entityList = empRepo.findByNameContaining(chars);
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesByNameIgnoringCase(String name) {
+		List<EmployeeEntity> entityList = empRepo.findByNameIgnoreCase(name);
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesBySalaryOrderByNameDesc(Float salary) {
+		Iterable<EmployeeEntity> entityList = empRepo.findBySalaryOrderByNameDesc(salary);
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		
+		entityList.forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesByNameAndCity(String name, String city) {
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		
+		empRepo.findByNameAndCity(name, city).forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesByCityAndSalary(String city, Float salary) {
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		
+		empRepo.findByCityAndSalary(city, salary).forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesBySalaryGreaterThanEqualAndNameContainingOrCity(Float salary, String chars, String city) {
+			List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+	
+	empRepo.findBySalaryGreaterThanEqualAndNameContainingOrCity(salary, chars, city).forEach(entity->{
+		EmployeeDto dto = new EmployeeDto();
+		BeanUtils.copyProperties(entity, dto);
+		dtoList.add(dto);
+	});
+	
+	return dtoList;
+		
+	}
+
+
+	@Override
+	public List<EmployeeDto> getEmployeesByNamesAndCities(Collection<String> names, Collection<String> cities) {
+		
+		List<EmployeeDto> dtoList = new ArrayList<EmployeeDto>();
+		
+		empRepo.findByNameInOrCityIn(names, cities).forEach(entity->{
+			EmployeeDto dto = new EmployeeDto();
+			BeanUtils.copyProperties(entity, dto);
+			dtoList.add(dto);
+		});
+		
+		return dtoList;
+		
 		
 	}
  

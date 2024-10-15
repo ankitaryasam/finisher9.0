@@ -21,6 +21,16 @@ public class EmployeeEntity  implements Serializable{
 	
 	@Column
 	private Float salary;
+	
+	private String city;
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	public Integer getEid() {
 		return eid;
@@ -53,12 +63,15 @@ public class EmployeeEntity  implements Serializable{
 	public void setSalary(Float salary) {
 		this.salary = salary;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "EmployeeEntity [eid=" + eid + ", name=" + name + ", email=" + email + ", salary=" + salary + "]";
+		return "EmployeeEntity [eid=" + eid + ", name=" + name + ", email=" + email + ", salary=" + salary + ", city="
+				+ city + "]";
 	}
+	
+	
+
 	  
 
 

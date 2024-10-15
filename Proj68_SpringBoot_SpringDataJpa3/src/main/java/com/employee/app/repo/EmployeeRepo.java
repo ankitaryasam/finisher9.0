@@ -9,5 +9,5 @@ import com.employee.app.entity.EmployeeEntity;
 
 @Repository("empRepo")
 public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Integer>{
-
+  
 }

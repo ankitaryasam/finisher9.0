@@ -25,9 +25,11 @@ public class Proj66SpringBootSpringDataJpa1Application {
 	
 //	controller.saveDataUsingParent();
 //	controller.saveDataUsingChild();
-	controller.getDataUsingParent();
+//	controller.getDataUsingParent();
 //	controller.getDataUsingChild();
 	
+	controller.getJoinsDataParentToChild();
+//	controller.getJoinsDataChildToParent();
 	
 	}
 	

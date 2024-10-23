@@ -14,5 +14,17 @@ public class CompanyController {
 	public void saveDataUsingParent() {
 		service.saveDataUsingParent();
 	}
+	
+	public void saveDataUsingChild() {
+		service.saveDataUsingChilds();
+	}
+	
+	public void getDataUsingParent() {
+		service.getDataUsingParent();
+	}
+	
+  public void getDataUsingChild() {
+	  service.getDataUsingChilds();
+  }
 
 }

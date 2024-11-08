@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    
+    <bean class="com.app.controller.HomeController" id="hc" />
+    
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" id="suhm">
+      <property name="mappings">
+      
+         <props>
+           <prop key="welcome.htm">hc</prop>
+          </props>
+         
+         </property>
+      </bean>
+      
+      
+      
+      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+        
+       </bean>
+      
+      
+      
+      
+      
+      
+
+</beans>

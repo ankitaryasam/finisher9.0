@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+<!--service bean-->
+    <bean class="com.app.service.GreetingMsgServiceImpl" id="service">
+
+    </bean>
+
+<!--  controller  -->
+    <bean class="com.app.controller.HomeController" id="homeController"></bean>
+
+<!--    controller-->
+    <bean class="com.app.controller.GreetMsgController" id="greetMsgController" >
+
+        <constructor-arg ref="service" />
+    </bean>
+
+<!--    handler mapping-->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="welcome.htm">homeController</prop>
+                <prop key="greet.htm">greetMsgController</prop>
+            </props>
+        </property>
+    </bean>
+
+<!--    view resolver-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>

@@ -12,6 +12,7 @@ public class HomeController implements Controller{
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		Date d = new Date();
 		ModelAndView mav = new ModelAndView("home", "currentDate", d);
 		return mav;

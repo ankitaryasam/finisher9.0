@@ -1,11 +1,36 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form:form modelAttribute="student"  method="POST">
 
-  Student Id: <form:input path="id" /> <br>
-  Name: <form:input  path="name" /> <br>
-  Email: <form:input path="email" /> <br>
-  Course: <form:input path="course" /> <br>
-  <input type="submit" value"Register Now">
+
+<h1 style="color:green; text-align:center;"> Student Registration Page </h1>
+<form:form modelAttribute="student" method="POST">
+
+  <table align="center" bgcolor="yellow">
+
+     <tr>
+       <th> Id: </th>
+       <td> <form:input path="id" /> </td>
+      </tr>
+
+      <tr>
+       <th>Name: </th>
+       <td> <form:input path="name" />
+       </tr>
+
+       <tr>
+         <th> Email: </th>
+         <td> <form:input path="email" /> </td>
+       </tr>
+
+       <tr>
+           <th>Course: </th>
+           <td> <form:input path="course" /> </td>
+       </tr>
+
+       <tr>
+         <td colspan="2"> <input type="submit" value="Register"> </td>
+       </tr>
+
+    </table>
  </form:form>

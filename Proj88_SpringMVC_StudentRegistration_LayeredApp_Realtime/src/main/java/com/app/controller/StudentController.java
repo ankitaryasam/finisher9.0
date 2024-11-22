@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/student")
 public class StudentController {
 
     @Autowired
@@ -24,7 +23,7 @@ public class StudentController {
         student.setCourse("springboot");
 
         //return lvn
-        return "student_reg_form";
+        return "student_registration_page";
     }
 
 

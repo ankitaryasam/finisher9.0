@@ -1,0 +1,29 @@
+pdn: uid=manish,ou=users,dc=userdetails,dc=com
+uid:manish
+cn:Manish
+sn:User
+userPassword: manish123
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+
+dn: uid=priya,ou=users,dc=userdetails,dc=com
+uid: priya
+cn: Priya
+sn:User
+userPassword:priya123
+objectClass:inetOrgPerson
+objectClass:organizationalPerson
+objectClass:person
+objectClass:top
+
+dn: uid=ashu,ou=users,dc=userdetails,dc=com
+uid:ashu
+cn:Ashu
+sn:User
+userPassword:ashu123
+objectClass:inetOrgPerson
+objectClass:organizationalPerson
+objectClass:person
+objectClass:top
